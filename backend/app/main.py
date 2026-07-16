@@ -15,12 +15,7 @@ import logging
 # Set up limiter
 limiter = Limiter(key_func=get_remote_address, default_limits=["100/minute"])
 
-try:
-    Base.metadata.create_all(bind=engine)
-    logging.info("Database connection and table creation successful.")
-except Exception as e:
-    logging.error(f"Failed to connect to the database or create tables: {e}")
-    logging.error("Please check your DATABASE_URL environment variable.")
+Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="Task Management API")
 app.state.limiter = limiter
