@@ -25,12 +25,12 @@ const MyTasks = () => {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedTask, setSelectedTask] = useState(null);
-  
+
   // Selection & Bulk State
   const [selectedTasks, setSelectedTasks] = useState(new Set());
   const [taskToDelete, setTaskToDelete] = useState(null);
   const [isProcessing, setIsProcessing] = useState(false);
-  
+
   // Search, Filter & Sort State (Persisted)
   const [searchTerm, setSearchTerm] = useState(() => localStorage.getItem('myTasks_search') || '');
   const [filters, setFilters] = useState(() => {
@@ -51,7 +51,7 @@ const MyTasks = () => {
     localStorage.setItem('myTasks_filters', JSON.stringify(filters));
     localStorage.setItem('myTasks_sort', sortBy);
   }, [searchTerm, filters, sortBy]);
-  
+
   // Modal & Form State
   const [showModal, setShowModal] = useState(false);
   const [editingTask, setEditingTask] = useState(null);
@@ -270,15 +270,15 @@ const MyTasks = () => {
       const searchLower = searchTerm.toLowerCase();
       const assigneeName = getAssignedUserName(task.assigned_to).toLowerCase();
       const tagsString = task.category ? task.category.toLowerCase() : '';
-      const matchesSearch = !searchTerm || 
-        task.title.toLowerCase().includes(searchLower) || 
+      const matchesSearch = !searchTerm ||
+        task.title.toLowerCase().includes(searchLower) ||
         (task.description && task.description.toLowerCase().includes(searchLower)) ||
         tagsString.includes(searchLower) ||
         assigneeName.includes(searchLower);
 
       // 2. Priority
       const matchesPriority = filters.priority.length === 0 || filters.priority.includes(task.priority);
-      
+
       // 3. Status
       let matchesStatus = true;
       if (filters.status.length > 0) {
@@ -298,12 +298,12 @@ const MyTasks = () => {
       if (filters.dueDate.length > 0) {
         matchesDue = false;
         const today = new Date();
-        today.setHours(0,0,0,0);
+        today.setHours(0, 0, 0, 0);
         const taskDue = task.due_date ? new Date(task.due_date) : null;
         if (taskDue) {
-          taskDue.setHours(0,0,0,0);
+          taskDue.setHours(0, 0, 0, 0);
           const diffDays = Math.round((taskDue - today) / (1000 * 60 * 60 * 24));
-          
+
           if (filters.dueDate.includes('Today') && diffDays === 0) matchesDue = true;
           if (filters.dueDate.includes('Tomorrow') && diffDays === 1) matchesDue = true;
           if (filters.dueDate.includes('This Week') && diffDays >= 0 && diffDays <= 7) matchesDue = true;
@@ -423,21 +423,21 @@ const MyTasks = () => {
               <div className="form-row">
                 <div className="form-group">
                   <label>Title</label>
-                  <input required type="text" placeholder="e.g., Redesign landing page" value={formData.title} onChange={e => setFormData({...formData, title: e.target.value})} />
+                  <input required type="text" placeholder="e.g., Redesign landing page" value={formData.title} onChange={e => setFormData({ ...formData, title: e.target.value })} />
                 </div>
                 <div className="form-group">
                   <label>Category</label>
-                  <input required type="text" placeholder="e.g., Design, Engineering" value={formData.category} onChange={e => setFormData({...formData, category: e.target.value})} />
+                  <input required type="text" placeholder="e.g., Design, Engineering" value={formData.category} onChange={e => setFormData({ ...formData, category: e.target.value })} />
                 </div>
               </div>
               <div className="form-group">
                 <label>Description</label>
-                <textarea rows="3" placeholder="Add additional context or requirements..." value={formData.description} onChange={e => setFormData({...formData, description: e.target.value})} />
+                <textarea rows="3" placeholder="Add additional context or requirements..." value={formData.description} onChange={e => setFormData({ ...formData, description: e.target.value })} />
               </div>
               <div className="form-row">
                 <div className="form-group">
                   <label>Priority</label>
-                  <select value={formData.priority} onChange={e => setFormData({...formData, priority: e.target.value})}>
+                  <select value={formData.priority} onChange={e => setFormData({ ...formData, priority: e.target.value })}>
                     <option value="Low">Low</option>
                     <option value="Medium">Medium</option>
                     <option value="High">High</option>
@@ -445,16 +445,16 @@ const MyTasks = () => {
                 </div>
                 <div className="form-group">
                   <label>Due Date</label>
-                  <input type="date" value={formData.due_date} onChange={e => setFormData({...formData, due_date: e.target.value})} />
+                  <input type="date" value={formData.due_date} onChange={e => setFormData({ ...formData, due_date: e.target.value })} />
                 </div>
               </div>
-              
+
               <div className="form-row">
                 <div className="form-group">
                   <label>Assign To</label>
-                  <select 
-                    value={formData.assigned_to} 
-                    onChange={e => setFormData({...formData, assigned_to: e.target.value})}
+                  <select
+                    value={formData.assigned_to}
+                    onChange={e => setFormData({ ...formData, assigned_to: e.target.value })}
                     disabled={!canAssign && formData.assigned_to !== '' && formData.assigned_to != user.id}
                   >
                     <option value="">Unassigned</option>
@@ -482,7 +482,7 @@ const MyTasks = () => {
                         <li key={att.id} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '0.85rem', background: 'rgba(255,255,255,0.05)', padding: '5px 10px', borderRadius: '4px' }}>
                           <span>{att.file_name}</span>
                           <div style={{ display: 'flex', gap: '10px' }}>
-                            <a href={`http://localhost:8000/${att.file_path}`} target="_blank" rel="noopener noreferrer" style={{ color: 'var(--primary)' }}><FiDownload /></a>
+                            <a href={`${import.meta.env.VITE_API_URL || 'http://localhost:8000'}/${att.file_path}`} target="_blank" rel="noopener noreferrer" style={{ color: 'var(--primary)' }}><FiDownload /></a>
                             <button type="button" onClick={() => handleDeleteAttachment(att.id)} style={{ background: 'none', border: 'none', color: 'red', cursor: 'pointer' }}><FiTrash2 /></button>
                           </div>
                         </li>
@@ -503,7 +503,7 @@ const MyTasks = () => {
 
       {/* Task Drawer */}
       {selectedTask && (
-        <TaskDrawer 
+        <TaskDrawer
           task={selectedTask}
           onClose={() => setSelectedTask(null)}
           onUpdate={() => { fetchTasks(); }}

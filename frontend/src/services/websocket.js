@@ -4,7 +4,11 @@ class WebSocketService {
     this.listeners = new Set();
     this.reconnectAttempts = 0;
     this.maxReconnectAttempts = 5;
-    this.url = 'ws://localhost:8000/ws';
+    
+    // Use environment variable if available, otherwise construct from API_URL, fallback to localhost
+    const apiBaseUrl = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+    const defaultWsUrl = apiBaseUrl.replace(/^http/, 'ws') + '/ws';
+    this.url = import.meta.env.VITE_WS_URL || defaultWsUrl;
   }
 
   connect() {

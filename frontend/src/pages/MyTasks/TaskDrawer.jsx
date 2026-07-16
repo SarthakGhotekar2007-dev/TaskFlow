@@ -126,7 +126,7 @@ const TaskDrawer = ({ task, onClose, onUpdate, onDelete, onEdit }) => {
 
         <div className="drawer-body">
           {loading && <div className="loading-state">Loading details...</div>}
-          
+
           {!loading && activeTab === 'details' && (
             <div className="drawer-section animate-fade-in">
               <div className="task-properties">
@@ -194,7 +194,7 @@ const TaskDrawer = ({ task, onClose, onUpdate, onDelete, onEdit }) => {
                           <FiPaperclip />
                           <span>{att.file_name}</span>
                         </div>
-                        <a href={`http://localhost:8000/${att.file_path}`} target="_blank" rel="noopener noreferrer" className="icon-btn-small"><FiDownload /></a>
+                        <a href={`${import.meta.env.VITE_API_URL || 'http://localhost:8000'}/${att.file_path}`} target="_blank" rel="noopener noreferrer" className="icon-btn-small"><FiDownload /></a>
                       </li>
                     ))}
                   </ul>
@@ -224,9 +224,9 @@ const TaskDrawer = ({ task, onClose, onUpdate, onDelete, onEdit }) => {
                 )}
               </div>
               <form className="comment-form" onSubmit={handleAddComment}>
-                <input 
-                  type="text" 
-                  placeholder="Write a comment..." 
+                <input
+                  type="text"
+                  placeholder="Write a comment..."
                   value={newComment}
                   onChange={e => setNewComment(e.target.value)}
                 />
