@@ -1,0 +1,112 @@
+@import './NavbarShared.css';
+
+.navbar-container {
+  height: var(--nav-height);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--nav-glass-bg);
+  backdrop-filter: blur(var(--nav-glass-blur));
+  -webkit-backdrop-filter: blur(var(--nav-glass-blur));
+  border-bottom: 1px solid var(--nav-border);
+  box-shadow: var(--nav-shadow);
+  transition: all 0.3s ease;
+}
+
+.nav-section-left {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  max-width: 700px; /* Desktop - Increased width per user request */
+  width: 100%;
+}
+
+.nav-section-center {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav-section-right {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 16px;
+}
+
+/* Icon Buttons shared by components */
+.nav-icon-btn {
+  background: var(--btn-glass);
+  border: 1px solid var(--btn-border);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #64748b;
+  font-size: 1.15rem;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  backdrop-filter: blur(8px);
+}
+
+[data-theme="dark"] .nav-icon-btn {
+  color: #94a3b8;
+}
+
+.nav-icon-btn:hover {
+  background: var(--btn-glass-hover);
+  color: var(--primary, #6366f1);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="dark"] .nav-icon-btn:hover {
+  color: #818cf8;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.nav-icon-btn:focus-visible {
+  outline: 2px solid var(--primary, #6366f1);
+  outline-offset: 2px;
+}
+
+/* Responsive Rules */
+@media (max-width: 1024px) {
+  .nav-section-center {
+    display: none;
+  }
+  .nav-section-left {
+    max-width: 480px; /* Laptop */
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar-container {
+    padding: 0 16px;
+  }
+  .nav-section-left {
+    max-width: 400px; /* Tablet */
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-section-left {
+    max-width: 180px; /* Mobile */
+  }
+  .nav-section-right {
+    gap: 8px;
+  }
+  .nav-icon-btn {
+    width: 36px;
+    height: 36px;
+  }
+}

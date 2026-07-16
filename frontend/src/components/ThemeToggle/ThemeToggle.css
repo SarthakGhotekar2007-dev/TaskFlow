@@ -1,0 +1,72 @@
+.theme-toggle-btn {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 1000;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  outline: none;
+}
+
+[data-theme='dark'] .theme-toggle-btn {
+  background: rgba(30, 30, 30, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.theme-toggle-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  background: rgba(255, 255, 255, 0.2);
+}
+
+[data-theme='dark'] .theme-toggle-btn:hover {
+  background: rgba(45, 45, 45, 0.6);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+}
+
+.theme-toggle-btn:focus-visible {
+  box-shadow: 0 0 0 3px var(--primary-color, #4f46e5);
+}
+
+.theme-toggle-icon {
+  font-size: 1.25rem;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #1e1e1e; /* Dark icon for light theme button */
+}
+
+[data-theme='dark'] .theme-toggle-icon {
+  color: #ffffff; /* Light icon for dark theme button */
+}
+
+.theme-toggle-icon.dark {
+  transform: rotate(360deg);
+}
+
+.theme-toggle-icon.light {
+  transform: rotate(0deg);
+}
+
+/* Make sure it's accessible and visible on small screens */
+@media (max-width: 768px) {
+  .theme-toggle-btn {
+    top: 1rem;
+    right: 1rem;
+    width: 40px;
+    height: 40px;
+  }
+}

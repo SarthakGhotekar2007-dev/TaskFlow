@@ -1,0 +1,82 @@
+.quick-create-wrapper {
+  position: relative;
+}
+
+.nav-btn-gradient {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: 40px;
+  background: linear-gradient(135deg, var(--primary, #6366f1) 0%, #a855f7 100%);
+  color: white;
+  border: none;
+  padding: 0 16px 0 12px;
+  border-radius: 9999px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.25);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.nav-btn-gradient:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(99, 102, 241, 0.35);
+  filter: brightness(1.05);
+}
+
+.nav-btn-gradient .qc-icon {
+  font-size: 1.1rem;
+}
+
+.quick-create-dropdown {
+  width: 220px;
+  padding: 8px;
+}
+
+.qc-item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 16px;
+  background: transparent;
+  border: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #334155;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+[data-theme="dark"] .qc-item {
+  color: #e2e8f0;
+}
+
+.qc-item svg {
+  font-size: 1.1rem;
+  color: #64748b;
+}
+
+[data-theme="dark"] .qc-item svg {
+  color: #94a3b8;
+}
+
+.qc-item:hover {
+  background: rgba(241, 245, 249, 0.8);
+  color: var(--primary, #6366f1);
+}
+
+[data-theme="dark"] .qc-item:hover {
+  background: rgba(15, 23, 42, 0.6);
+  color: #818cf8;
+}
+
+.qc-item:hover svg {
+  color: var(--primary, #6366f1);
+}
+
+[data-theme="dark"] .qc-item:hover svg {
+  color: #818cf8;
+}

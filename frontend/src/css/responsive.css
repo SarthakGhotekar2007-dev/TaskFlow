@@ -1,0 +1,81 @@
+/* Responsive Utilities */
+
+/* Desktop / Large Screens (1400px and below) */
+@media (max-width: 1400px) {
+  .page-content {
+    max-width: 1200px;
+  }
+}
+
+/* Laptop / Tablets Landscape (1200px and below) */
+@media (max-width: 1200px) {
+  .dashboard-content {
+    grid-template-columns: 1fr;
+  }
+  
+  .stats-grid {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  }
+}
+
+/* Tablets Portrait (992px and below) */
+@media (max-width: 992px) {
+  .main-content {
+    margin-left: 0; /* Sidebar collapses or becomes absolute */
+  }
+  
+  .page-content {
+    padding: 24px;
+  }
+  
+  .form-row {
+    grid-template-columns: 1fr; /* Task form goes to single column */
+  }
+}
+
+/* Mobile (768px and below) */
+@media (max-width: 768px) {
+  .welcome-text {
+    font-size: 1.75rem;
+  }
+  
+  .stat-card {
+    padding: 20px;
+  }
+  
+  .stat-details h3 {
+    font-size: 1.75rem;
+  }
+  
+  .task-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .task-actions {
+    width: 100%;
+    justify-content: flex-end;
+    margin-top: 12px;
+  }
+  
+  .modal-content {
+    padding: 24px;
+    margin: 16px;
+    border-radius: 16px;
+  }
+  
+  .stats-grid {
+    grid-template-columns: 1fr; /* Single column stats on mobile */
+  }
+}
+
+/* Small Mobile (480px and below) */
+@media (max-width: 480px) {
+  .page-content {
+    padding: 16px;
+  }
+  
+  .welcome-text {
+    font-size: 1.5rem;
+  }
+}

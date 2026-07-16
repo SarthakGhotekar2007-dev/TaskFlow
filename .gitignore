@@ -1,0 +1,37 @@
+# Environment Files
+.env
+*.env
+backend/.env
+frontend/.env
+
+# Firebase Credentials
+backend/firebase-credentials.json
+
+# Database
+tasks.db
+backend/tasks.db
+*.db
+
+# Python Cache
+__pycache__/
+**/__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual Environment
+.venv/
+venv/
+
+# Node Modules
+node_modules/
+
+# Build
+dist/
+build/
+
+# VS Code
+.vscode/
+
+# Logs
+*.log
